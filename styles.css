@@ -1,26 +1,36 @@
 
-:root { color-scheme: light dark; --bg:#0b0b0c; --fg:#fff; --card:#1b1b1f; --muted:#8a8a8a; --accent:#4caf50; }
+:root { color-scheme: light dark; --bg:#0b0b0c; --fg:#fff; --card:#1b1b1f; --muted:#8a8a8a; --accent:#4caf50; --danger:#e53935; --border:#2a2a2e; }
 * { box-sizing: border-box; }
-body { margin:0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height:1.35; }
-header { padding:16px 16px 8px; background:var(--card); color:var(--fg); position:sticky; top:0; z-index:1; }
+body { margin:0; background:var(--bg); color:var(--fg); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height:1.35; }
+header { padding:16px 16px 8px; background:var(--card); color:var(--fg); position:sticky; top:0; z-index:2; border-bottom:1px solid var(--border); }
 h1 { margin:0 0 8px; font-size:20px; }
 .stats { display:grid; grid-template-columns:1fr 1fr; gap:6px 12px; font-size:14px; color:var(--muted); }
+.tabs { margin-top:10px; display:flex; gap:8px; }
+.tab-button { background:transparent; color:var(--fg); border:1px solid var(--border); padding:8px 12px; border-radius:8px; cursor:pointer; }
+.tab-button.active { background:var(--accent); border-color:var(--accent); color:white; }
 main { padding:16px; }
 h2 { margin:12px 0 8px; font-size:16px; }
 .grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:10px; }
-.button-item { background:var(--card); padding:12px; border-radius:10px; text-align:center; cursor:pointer; border:1px solid #2a2a2e; user-select:none; }
+.button-item { background:var(--card); padding:12px; border-radius:10px; text-align:center; cursor:pointer; border:1px solid var(--border); user-select:none; }
 .button-item:active { transform:scale(0.98); }
 .button-item .label { font-size:14px; color:var(--fg); }
+.button-item .points { display:inline-block; margin-top:6px; font-size:12px; color:var(--muted); }
 .hidden { display:none; }
-.panel { margin-top:18px; background:var(--card); padding:12px; border-radius:10px; border:1px solid #2a2a2e; }
+.panel { margin-top:18px; background:var(--card); padding:12px; border-radius:10px; border:1px solid var(--border); }
 #adjust-form { display:flex; gap:8px; flex-wrap:wrap; }
-#adjust-form input { flex:1 1 160px; padding:10px; border-radius:8px; border:1px solid #2a2a2e; background:transparent; color:var(--fg); }
+#adjust-form input { flex:1 1 160px; padding:10px; border-radius:8px; border:1px solid var(--border); background:transparent; color:var(--fg); }
 #adjust-form button { background:var(--accent); color:white; border:none; padding:10px 14px; border-radius:8px; }
 #adjustments-list { margin:10px 0 0; padding:0; list-style:none; font-size:14px; color:var(--muted); }
 .admin-actions { display:flex; gap:8px; flex-wrap:wrap; }
-.admin-actions button { padding:10px 12px; border-radius:8px; border:1px solid #2a2a2e; background:transparent; color:var(--fg); }
-.modal { position:fixed; inset:0; background:rgba(0,0,0,0.5); display:flex; align-items:center; justify-content:center; }
-.modal-content { width:min(680px, 92vw); background:var(--card); border:1px solid #2a2a2e; border-radius:10px; padding:12px; }
+.admin-actions button { padding:10px 12px; border-radius:8px; border:1px solid var(--border); background:transparent; color:var(--fg); }
+.modal { position:fixed; inset:0; background:rgba(0,0,0,0.5); display:flex; align-items:center; justify-content:center; z-index:3; }
+.modal-content { width:min(680px, 92vw); background:var(--card); border:1px solid var(--border); border-radius:10px; padding:12px; }
 .modal-actions { display:flex; gap:8px; justify-content:flex-end; margin-top:8px; }
-textarea { width:100%; padding:10px; border-radius:8px; border:1px solid #2a2a2e; background:transparent; color:var(--fg); }
+textarea { width:100%; padding:10px; border-radius:8px; border:1px solid var(--border); background:transparent; color:var(--fg); }
+.muted { color:var(--muted); }
+.small { font-size:12px; }
+.tab-panel.hidden { display:none; }
+#activities-applied-list, #adjustments-list { list-style:none; padding-left:0; }
+#activities-applied-list li { display:flex; justify-content:space-between; align-items:center; padding:8px 10px; border:1px dashed var(--border); border-radius:8px; margin:6px 0; }
+#activities-applied-list li .undo { color:#fff; background:var(--danger); border:none; padding:6px 10px; border-radius:6px; cursor:pointer; }
 @media (min-width:560px){ .grid { grid-template-columns:repeat(5,1fr); } }
