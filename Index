@@ -1,0 +1,73 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Daily Objectives</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- iOS PWA meta -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="icon.png">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Daily Objectives</h1>
+    <div class="stats">
+      <div>Today: <span id="today-date"></span></div>
+      <div>Completed: <span id="completed-count">0</span> / <span id="total-count">0</span></div>
+      <div>Daily Total: <span id="daily-score">0</span></div>
+      <div>Rolling Total: <span id="rolling-total">0</span></div>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h2>Tap to complete</h2>
+      <div id="button-list" class="grid"></div>
+      <div id="empty-state" class="hidden">All done for today 🎉</div>
+    </section>
+
+    <section class="panel">
+      <h2>Adjustments</h2>
+      <form id="adjust-form">
+        <input type="number" id="adjust-amount" placeholder="Amount (e.g., -2 or 3)" required />
+        <input type="text" id="adjust-reason" placeholder="Reason (optional)" />
+        <button type="submit">Apply</button>
+      </form>
+      <ul id="adjustments-list"></ul>
+    </section>
+
+    <section class="panel">
+      <h2>Admin</h2>
+      <div class="admin-actions">
+        <button id="reset-day">Reset Today</button>
+        <button id="edit-objectives">Edit Objectives</button>
+        <button id="export-data">Export JSON</button>
+      </div>
+    </section>
+  </main>
+
+  <div id="editor-modal" class="modal hidden">
+    <div class="modal-content">
+      <h3>Edit Objectives (one per line)</h3>
+      <textarea id="editor-text" rows="12"></textarea>
+      <div class="modal-actions">
+        <button id="save-objectives">Save</button>
+        <button id="cancel-editor">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./service-worker.js');
+      });
+    }
+  </script>
+</body>
+</html>
